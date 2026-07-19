@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-primary: 79, 70, 229;
+  --color-primary-hex: #4F46E5;
+  --color-accent: 99, 102, 241;
+  --color-accent-hex: #6366F1;
+  --color-sidebar-bg: #ffffff;
+  --color-sidebar-text: #1e293b;
+  --color-page-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-border: #e2e8f0;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #64748b;
+  --color-glow: rgba(99, 102, 241, 0.15);
+}
+
+* {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--color-page-bg);
+  color: var(--color-text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Theme-aware utilities */
+.theme-sidebar { background-color: var(--color-sidebar-bg); color: var(--color-sidebar-text); }
+.theme-surface { background-color: var(--color-surface); border-color: var(--color-surface-border); }
+.theme-text { color: var(--color-text-primary); }
+.theme-text-secondary { color: var(--color-text-secondary); }
+.theme-primary { color: var(--color-primary-hex); }
+.theme-primary-bg { background-color: var(--color-primary-hex); }
+.theme-accent { color: var(--color-accent-hex); }
+.theme-glow { box-shadow: 0 0 20px var(--color-glow); }
+.theme-glow-sm { box-shadow: 0 0 10px var(--color-glow); }
+.theme-border { border-color: var(--color-surface-border); }
+
+/* Frosted glass */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.dark-theme .glass {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+/* Glow hover effects */
+.glow-hover {
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.glow-hover:hover {
+  box-shadow: 0 0 24px var(--color-glow);
+  transform: translateY(-1px);
+}
+
+/* Active nav indicator */
+.nav-active-glow {
+  border-left: 3px solid var(--color-accent-hex);
+  box-shadow: inset 4px 0 12px -4px var(--color-glow);
+}
+
+/* Dark theme card styling */
+.dark-theme .card-surface {
+  background-color: var(--color-surface);
+  border-color: var(--color-surface-border);
+  color: var(--color-text-primary);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-surface-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-secondary); }
+
+/* Animated gradient for login */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animated-gradient {
+  background: linear-gradient(-45deg, #0f172a, #1e1b4b, #0c4a6e, #064e3b);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}

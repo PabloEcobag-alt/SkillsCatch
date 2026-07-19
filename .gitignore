@@ -1,0 +1,7 @@
+node_modules/
+my-app/node_modules/
+dist/
+.env
+.env.local
+nul
+my-app/nul

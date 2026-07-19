@@ -1,0 +1,20 @@
+-- Storage RLS Policies for Resume and avatars buckets
+-- NOTE: storage.objects is a Supabase system table managed internally.
+-- Direct RLS policy creation requires superuser privileges.
+-- 
+-- ALTERNATIVE: Use Supabase Dashboard to set bucket policies:
+-- 1. Go to Supabase Dashboard → Storage
+-- 2. Click on "Resume" bucket
+-- 3. Click "Policies" tab
+-- 4. Create policy for INSERT: Allow authenticated users where folder path = auth.uid()
+-- 5. Create policy for SELECT: Allow authenticated users where folder path = auth.uid()
+-- 6. Create policy for UPDATE: Allow authenticated users where folder path = auth.uid()
+-- 7. Create policy for DELETE: Allow authenticated users where folder path = auth.uid()
+-- 8. Repeat for "avatars" bucket
+--
+-- OR use Supabase CLI:
+-- supabase storage policies add 'resume-insert' Resume --type INSERT --allowed-role authenticated --definition "(storage.foldername(name))[1] = auth.uid()::text"
+-- supabase storage policies add 'resume-select' Resume --type SELECT --allowed-role authenticated --definition "(storage.foldername(name))[1] = auth.uid()::text"
+-- supabase storage policies add 'resume-update' Resume --type UPDATE --allowed-role authenticated --definition "(storage.foldername(name))[1] = auth.uid()::text"
+-- supabase storage policies add 'resume-delete' Resume --type DELETE --allowed-role authenticated --definition "(storage.foldername(name))[1] = auth.uid()::text"
+-- (Repeat for avatars bucket)
